@@ -1,6 +1,7 @@
 <div align="center">
 
 🔒 Programa de Cifra Híbrida (RSA + AES)
+
 Uma aplicação de desktop em Java Swing para demonstrar a criptografia híbrida, utilizando chaves assimétricas (RSA) e simétricas (AES) para proteger mensagens.
 
 </div>
@@ -9,14 +10,17 @@ Uma aplicação de desktop em Java Swing para demonstrar a criptografia híbrida
 
 ---------------------------------------------------------------------------------------------------
 📖 Sobre o Projeto
-    Este projeto é uma ferramenta gráfica (CifraHibridaGUI.java) que implementa um sistema de criptografia híbrida. Este método combina a segurança da criptografia assimétrica (RSA) com a eficiência da criptografia simétrica (AES).
-    A lógica principal (CifraHibrida.java) permite que um utilizador gere um par de chaves (Pública e Privada) e, em seguida, cifre e decifre mensagens de forma segura.
+
+Este projeto é uma ferramenta gráfica (CifraHibridaGUI.java) que implementa um sistema de criptografia híbrida. Este método combina a segurança da criptografia assimétrica (RSA) com a eficiência da criptografia simétrica (AES).
+
+A lógica principal (CifraHibrida.java) permite que um utilizador gere um par de chaves (Pública e Privada) e, em seguida, cifre e decifre mensagens de forma segura.
 
 ---------------------------------------------------------------------------------------------------
 🔑 O Conceito de Cifra Híbrida
-    A criptografia puramente assimétrica (RSA) é lenta para grandes volumes de dados. A criptografia puramente simétrica (AES) é rápida, mas tem o problema de como partilhar a chave secreta de forma segura.
+    
+A criptografia puramente assimétrica (RSA) é lenta para grandes volumes de dados. A criptografia puramente simétrica (AES) é rápida, mas tem o problema de como partilhar a chave secreta de forma segura.
 
-   A Cifra Híbrida resolve ambos os problemas:
+A Cifra Híbrida resolve ambos os problemas:
    
    1. Processo de Cifragem (Enviar Mensagem)
 
@@ -36,6 +40,7 @@ Uma aplicação de desktop em Java Swing para demonstrar a criptografia híbrida
 
 ---------------------------------------------------------------------------------------------------
 ✨ Funcionalidades
+
   A aplicação gráfica oferece as seguintes funções:
 
 Gerar Chaves: Cria um par de chaves RSA (Pública e Privada).
