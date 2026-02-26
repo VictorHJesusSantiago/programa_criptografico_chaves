@@ -1,128 +1,250 @@
 <div align="center">
 
-🔒 Programa de Cifra Híbrida (RSA + AES)
+<img src="https://cdn-icons-png.flaticon.com/512/2092/2092663.png" alt="Cifra Híbrida Logo" width="110" />
 
-Uma aplicação de desktop em Java Swing para demonstrar a criptografia híbrida, utilizando chaves assimétricas (RSA) e simétricas (AES) para proteger mensagens.
+# 🔒 Programa de Cifra Híbrida — RSA + AES
+
+**Uma aplicação de desktop em Java Swing para demonstrar a criptografia híbrida,**
+**combinando chaves assimétricas (RSA) e simétricas (AES) para proteger mensagens.**
+
+<br>
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Swing](https://img.shields.io/badge/Java%20Swing-GUI-007396?style=for-the-badge&logo=java&logoColor=white)
+![RSA](https://img.shields.io/badge/RSA-Assimétrico-8B0000?style=for-the-badge)
+![AES](https://img.shields.io/badge/AES-Simétrico-1B5E20?style=for-the-badge)
+![JCA](https://img.shields.io/badge/JCA-Java%20Cryptography-blueviolet?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completo-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 </div>
 
-<p align="center"> <img alt="Status do Projeto" src="https://img.shields.io/badge/Status-Completo-brightgreen?style=for-the-badge"> <img alt="Linguagem" src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"> <img alt="UI" src="https://img.shields.io/badge/UI-Java%20Swing-blue?style=for-the-badge&logo=java"> <img alt="IDE" src="https://img.shields.io/badge/IDE-Apache%20NetBeans-blueviolet?style=for-the-badge&logo=apache-netbeans-ide"> </p>
+---
 
----------------------------------------------------------------------------------------------------
-📖 Sobre o Projeto
+## 📚 Tabela de Conteúdos
 
-Este projeto é uma ferramenta gráfica (CifraHibridaGUI.java) que implementa um sistema de criptografia híbrida. Este método combina a segurança da criptografia assimétrica (RSA) com a eficiência da criptografia simétrica (AES).
+> Navegue rapidamente pelas seções do projeto.
 
-A lógica principal (CifraHibrida.java) permite que um utilizador gere um par de chaves (Pública e Privada) e, em seguida, cifre e decifre mensagens de forma segura.
+| # | Seção |
+|:-:|:------|
+| 1 | [📖 Sobre o Projeto](#-sobre-o-projeto) |
+| 2 | [🔑 O Conceito de Cifra Híbrida](#-o-conceito-de-cifra-híbrida) |
+| 3 | [✨ Funcionalidades](#-funcionalidades) |
+| 4 | [🛠️ Pilha de Tecnologias](#️-pilha-de-tecnologias) |
+| 5 | [📂 Estrutura do Repositório](#-estrutura-do-repositório) |
+| 6 | [🚀 Como Executar](#-como-executar) |
+| 7 | [🤝 Como Contribuir](#-como-contribuir) |
+| 8 | [👨‍💻 Autor](#-autor) |
+| 9 | [📄 Licença](#-licença) |
 
----------------------------------------------------------------------------------------------------
-🔑 O Conceito de Cifra Híbrida
-    
-A criptografia puramente assimétrica (RSA) é lenta para grandes volumes de dados. A criptografia puramente simétrica (AES) é rápida, mas tem o problema de como partilhar a chave secreta de forma segura.
+---
 
-A Cifra Híbrida resolve ambos os problemas:
-   
-   1. Processo de Cifragem (Enviar Mensagem)
+## 📖 Sobre o Projeto
 
-🔐 Gera-se uma chave de sessão (uma chave AES simétrica) aleatória.
+> **Cifra Híbrida** é uma ferramenta gráfica que implementa um sistema de **criptografia híbrida** — o mesmo conceito utilizado em protocolos modernos como HTTPS e TLS.
 
-📝 A mensagem original é cifrada usando esta chave AES (que é rápida).
+O projeto combina o melhor de dois mundos: a **segurança** da criptografia assimétrica (RSA) com a **eficiência** da criptografia simétrica (AES), demonstrando de forma prática como mensagens podem ser protegidas e transmitidas com segurança.
 
-🔑 A chave AES (que é pequena) é então cifrada usando a Chave Pública RSA do destinatário.
+A lógica principal (`CifraHibrida.java`) e a interface gráfica (`CifraHibridaGUI.java`) permitem gerar um par de chaves RSA, cifrar e decifrar mensagens com apenas alguns cliques.
 
-📤 O texto cifrado (AES) e a chave de sessão cifrada (RSA) são enviados juntos para o destinatário.
+---
 
-  2. Processo de Decifragem (Receber Mensagem)
+## 🔑 O Conceito de Cifra Híbrida
 
-🔑 O destinatário usa a sua Chave Privada RSA para decifrar a chave de sessão cifrada, recuperando a chave AES original.
+> A criptografia puramente **assimétrica (RSA)** é segura, mas lenta para grandes volumes de dados. A criptografia puramente **simétrica (AES)** é rápida, mas apresenta o problema de como compartilhar a chave secreta com segurança. A **Cifra Híbrida** resolve ambos os problemas simultaneamente.
 
-📝 Com a chave AES agora em mãos, o destinatário decifra o texto cifrado, revelando a mensagem original.
+### 🔐 Processo de Cifragem (Enviar Mensagem)
 
----------------------------------------------------------------------------------------------------
-✨ Funcionalidades
+```
+1. 🎲 Gera-se uma CHAVE DE SESSÃO AES aleatória (simétrica)
+         ↓
+2. 📝 A MENSAGEM ORIGINAL é cifrada com a chave AES  →  [ TEXTO CIFRADO (AES) ]
+         ↓
+3. 🔑 A CHAVE AES é cifrada com a CHAVE PÚBLICA RSA  →  [ CHAVE CIFRADA (RSA) ]
+         ↓
+4. 📤 [ TEXTO CIFRADO (AES) ] + [ CHAVE CIFRADA (RSA) ] são enviados ao destinatário
+```
 
-  A aplicação gráfica oferece as seguintes funções:
+### 🔓 Processo de Decifragem (Receber Mensagem)
 
-Gerar Chaves: Cria um par de chaves RSA (Pública e Privada).
+```
+1. 📥 Destinatário recebe [ TEXTO CIFRADO (AES) ] + [ CHAVE CIFRADA (RSA) ]
+         ↓
+2. 🔑 A CHAVE PRIVADA RSA decifra a CHAVE CIFRADA  →  [ CHAVE AES RECUPERADA ]
+         ↓
+3. 📝 A CHAVE AES decifra o TEXTO CIFRADO  →  [ MENSAGEM ORIGINAL ]
+```
 
-Cifrar: Recebe uma mensagem e uma Chave Pública para executar o processo de cifragem híbrida.
+### ⚖️ Por que Híbrida?
 
-Decifrar: Recebe os dados cifrados e a Chave Privada para reverter o processo e obter a mensagem original.
+| Algoritmo | Vantagem | Limitação | Papel na Cifra Híbrida |
+|:----------|:--------:|:---------:|:-----------------------|
+| **RSA** (Assimétrico) | 🔐 Alta segurança | 🐢 Lento para dados grandes | Cifra apenas a **chave AES** (pequena). |
+| **AES** (Simétrico) | ⚡ Muito eficiente | 🤝 Problema de troca de chave | Cifra a **mensagem** (rápido e seguro). |
 
-Limpar: Limpa todas as áreas de texto da interface.
+---
 
-Sair: Fecha a aplicação.
+## ✨ Funcionalidades
 
----------------------------------------------------------------------------------------------------
-🛠️ Tecnologias Utilizadas
+| Ícone | Funcionalidade | Descrição |
+|:-----:|:---------------|:----------|
+| 🗝️ | **Gerar Chaves** | Cria um par de chaves RSA — Pública e Privada — exibidas na interface. |
+| 🔒 | **Cifrar** | Recebe uma mensagem e a Chave Pública RSA para executar o processo de cifragem híbrida. |
+| 🔓 | **Decifrar** | Recebe os dados cifrados e a Chave Privada RSA para recuperar a mensagem original. |
+| 🧹 | **Limpar** | Limpa todas as áreas de texto da interface. |
+| 🚪 | **Sair** | Fecha a aplicação. |
 
-Java: Linguagem principal do projeto.
+---
 
-Java Swing: Para a construção da interface gráfica (GUI).
+## 🛠️ Pilha de Tecnologias
 
-Java Cryptography Architecture (JCA):
+| Tecnologia | Função no Projeto |
+|:-----------|:------------------|
+| **Java** | Linguagem principal — toda a lógica de criptografia e interface gráfica. |
+| **Java Swing** | Construção da interface gráfica desktop (`JFrame`, `JTextArea`, botões). |
+| **JCA — RSA** | `KeyPairGenerator` para geração do par de chaves e `Cipher` para cifra assimétrica. |
+| **JCA — AES** | `KeyGenerator` para a chave de sessão e `Cipher` para cifra simétrica da mensagem. |
+| **Apache NetBeans** | IDE utilizada no desenvolvimento (arquivos `nbproject/` e `build.xml` incluídos). |
+| **Apache Ant** | Sistema de build via `build.xml` utilizado pelo NetBeans. |
 
-RSA: Para a criptografia assimétrica das chaves.
+---
 
-AES: Para a criptografia simétrica da mensagem.
+## 📂 Estrutura do Repositório
 
----------------------------------------------------------------------------------------------------
-📂 Estrutura do Repositório
-  O projeto foi desenvolvido na IDE Apache NetBeans e segue a sua estrutura padrão:
-
+```plaintext
 programa_criptografico_chaves/
-
 │
-
-├── teste_cripto/
-
-│   ├── src/
-
-│   │   ├── CifraHibrida.java     # Contém toda a lógica de criptografia
-
-│   │   └── CifraHibridaGUI.java  # A classe principal com a interface Swing
-
-│   │
-
-│   ├── dist/
-
-│   │   └── teste_cripto.jar      # O ficheiro JAR executável do projeto
-
-│   │
-
-│   ├── nbproject/                # Ficheiros de configuração do NetBeans
-
-│   ├── build.xml                 # Ficheiro de build (Ant)
-
-│   └── manifest.mf               # Manifesto que aponta a classe principal
-
+├── 📄 README.md                           # 📖 Este arquivo
 │
+└── 📁 teste_cripto/
+    │
+    ├── 📄 build.xml                       # ⚙️  Arquivo de build (Apache Ant)
+    ├── 📄 manifest.mf                     # 📋 Manifesto — aponta a classe principal
+    │
+    ├── 📁 src/
+    │   ├── 📄 CifraHibrida.java           # 🔐 Lógica de criptografia RSA + AES ← CORE
+    │   └── 📄 CifraHibridaGUI.java        # 🖥️  Interface gráfica Swing ← CORE
+    │
+    ├── 📁 dist/
+    │   └── 📄 teste_cripto.jar            # 🚀 JAR executável (pronto para uso)
+    │
+    └── 📁 nbproject/                      # ⚙️  Arquivos de configuração do NetBeans
+```
 
-└── README.md                     # Este ficheiro
+---
 
----------------------------------------------------------------------------------------------------
-💿 Como Executar o Projeto
-  Existem duas formas fáceis de executar a aplicação:
+## 🚀 Como Executar
 
-  Opção 1: Usar o JAR Executável (Recomendado)
+### 📋 Pré-requisitos
 
-O ficheiro .jar já está compilado e pronto para ser executado.
+| Requisito | Detalhe |
+|:----------|:--------|
+| **JRE / JDK** | Versão **8 ou superior** instalada e configurada no `PATH`. |
+| **Apache NetBeans** | *(Opcional)* Necessário apenas para compilar pelo método 2. |
+| **Git** | Para clonar o repositório. |
 
-Certifique-se de que tem o Java Runtime Environment (JRE) instalado no seu sistema.
+---
 
-Navegue até à pasta teste_cripto/dist/.
+### 🟢 Opção 1 — JAR Executável (Recomendado)
 
-Execute o ficheiro JAR: java -jar teste_cripto.jar
+> O arquivo `.jar` já está **compilado e pronto para uso** na pasta `dist/`.
 
-(Ou, na maioria dos sistemas operativos, basta dar um clique duplo no ficheiro teste_cripto.jar).
+**1. Clone o repositório:**
 
-Opção 2: Compilar pela IDE (NetBeans)
-  Como este é um projeto NetBeans, a forma mais fácil de o compilar é:
+```bash
+git clone https://github.com/VictorHJesusSantiago/programa_criptografico_chaves.git
+cd programa_criptografico_chaves/teste_cripto/dist
+```
 
-Abra o Apache NetBeans IDE.
+**2. Execute o JAR via terminal:**
 
-Vá a File > Open Project...
+```bash
+java -jar teste_cripto.jar
+```
 
-Selecione a pasta teste_cripto.
+> 💡 **Atalho:** Na maioria dos sistemas operacionais, basta dar **clique duplo** no arquivo `teste_cripto.jar` para abrir a interface gráfica diretamente.
 
-Clique no botão "Run Project" (ou prima F6). A IDE irá compilar e executar a CifraHibridaGUI.java automaticamente.
+---
+
+### 🔧 Opção 2 — Compilar pela IDE NetBeans
+
+```
+1. Abra o Apache NetBeans IDE
+2. File → Open Project...
+3. Selecione a pasta 'teste_cripto'
+4. Clique em "Run Project" ou pressione F6
+```
+
+> A IDE compila e executa `CifraHibridaGUI.java` automaticamente.
+
+---
+
+### 🎯 Como Usar a Aplicação
+
+| Passo | Ação |
+|:-----:|:-----|
+| 1️⃣ | Clique em **Gerar Chaves** para criar o par RSA (Pública e Privada). |
+| 2️⃣ | Digite a mensagem que deseja proteger no campo de entrada. |
+| 3️⃣ | Clique em **Cifrar** — a mensagem cifrada (AES) e a chave de sessão cifrada (RSA) serão exibidas. |
+| 4️⃣ | Clique em **Decifrar** usando a Chave Privada para recuperar a mensagem original. |
+| 5️⃣ | Use **Limpar** para resetar todos os campos e iniciar um novo ciclo. |
+
+---
+
+## 🤝 Como Contribuir
+
+> Contribuições são muito bem-vindas! Siga as etapas abaixo para colaborar de forma organizada.
+
+| Passo | Ação | Comando |
+|:-----:|:-----|:--------|
+| 1️⃣ | **Fork** | Crie um fork do repositório para a sua conta. | — |
+| 2️⃣ | **Branch** | Crie sua feature branch a partir da `main`. | `git checkout -b feature/NovaFeature` |
+| 3️⃣ | **Commit** | Salve as alterações com mensagem clara e semântica. | `git commit -m 'feat: Adiciona NovaFeature'` |
+| 4️⃣ | **Push** | Envie a branch para o repositório remoto. | `git push origin feature/NovaFeature` |
+| 5️⃣ | **Pull Request** | Abra um PR detalhando as mudanças realizadas. | — |
+
+<div align="center">
+
+<br>
+
+**Se este projeto foi útil para os seus estudos, deixe uma estrela ⭐️ no repositório!**
+
+</div>
+
+---
+
+## 👨‍💻 Autor
+
+<div align="center">
+
+<br>
+
+**Victor H. J. Santiago**
+
+<br>
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/VictorHJesusSantiago)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victor-henrique-de-jesus-santiago/)
+
+</div>
+
+---
+
+## 📄 Licença
+
+<div align="center">
+
+Este projeto está distribuído sob a **Licença MIT**.
+Consulte o arquivo [`LICENSE`](./LICENSE) no repositório para mais informações.
+
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+</div>
+
+---
+
+<div align="center">
+
+*Feito com 🔒 e Java por **Victor H. J. Santiago***
+
+</div>
