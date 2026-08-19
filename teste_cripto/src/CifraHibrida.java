@@ -51,21 +51,18 @@ public class CifraHibrida {
      * Método que realiza a cifragem do texto.
      */
     public DadosCifrados cifrar(String textoClaro) throws Exception {
-        // Geração da chave simétrica AES (128 bits)
         KeyGenerator geradorChave = KeyGenerator.getInstance("AES");
         geradorChave.init(128);
         SecretKey chaveAES = geradorChave.generateKey();
 
-        // Cifragem do texto com AES/GCM
         Cipher cifraAES = Cipher.getInstance("AES/GCM/NoPadding");
-        byte[] iv = new byte[12]; // IV de 12 bytes (recomendado para GCM)
+        byte[] iv = new byte[12];
         SecureRandom random = new SecureRandom();
         random.nextBytes(iv);
-        GCMParameterSpec parametroGCM = new GCMParameterSpec(128, iv); // Tag de 128 bits
+        GCMParameterSpec parametroGCM = new GCMParameterSpec(128, iv);
         cifraAES.init(Cipher.ENCRYPT_MODE, chaveAES, parametroGCM);
         byte[] textoCifrado = cifraAES.doFinal(textoClaro.getBytes("UTF-8"));
 
-        // Cifragem da chave de sessão com RSA/OAEP (usando SHA-256)
         Cipher cifraRSA = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         cifraRSA.init(Cipher.ENCRYPT_MODE, chavePublica);
         byte[] chaveSessaoCifrada = cifraRSA.doFinal(chaveAES.getEncoded());
@@ -77,13 +74,11 @@ public class CifraHibrida {
      * Método que realiza a decifragem dos dados.
      */
     public String decifrar(DadosCifrados dados) throws Exception {
-        // Decifragem da chave de sessão com RSA/OAEP
         Cipher cifraRSA = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         cifraRSA.init(Cipher.DECRYPT_MODE, chavePrivada);
         byte[] chaveAESBytes = cifraRSA.doFinal(dados.getChaveSessaoCifrada());
         SecretKey chaveAES = new SecretKeySpec(chaveAESBytes, "AES");
 
-        // Decifragem do texto com AES/GCM
         Cipher cifraAES = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec parametroGCM = new GCMParameterSpec(128, dados.getIv());
         cifraAES.init(Cipher.DECRYPT_MODE, chaveAES, parametroGCM);

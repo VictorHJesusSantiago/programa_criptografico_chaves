@@ -5,14 +5,12 @@ import java.awt.*;
 public class CifraHibridaGUI extends JFrame {
     private CifraHibrida cifra;
 
-    // Componentes da aba "Cifrar"
     private JTextArea areaTextoClaro;
     private JButton botaoCifrar;
     private JTextField campoChaveSessaoCifrada;
     private JTextField campoIV;
     private JTextArea areaTextoCifrado;
 
-    // Componentes da aba "Decifrar"
     private JTextArea areaChaveSessaoCifrada;
     private JTextArea areaIV;
     private JTextArea areaTextoCifradoDecifrar;
@@ -50,16 +48,13 @@ public class CifraHibridaGUI extends JFrame {
             ex.printStackTrace();
         }
 
-        // Painel de abas
         JTabbedPane abas = new JTabbedPane();
         abas.setBackground(new Color(245, 245, 245));
 
-        // ----- Aba "Cifrar" -----
         JPanel painelCifrar = new JPanel(new BorderLayout());
         painelCifrar.setBackground(new Color(245, 245, 245));
         painelCifrar.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // Área de entrada do texto claro
         JPanel painelEntrada = new JPanel(new BorderLayout());
         painelEntrada.setBorder(BorderFactory.createTitledBorder("Texto Claro"));
         painelEntrada.setBackground(new Color(245, 245, 245));
@@ -70,7 +65,6 @@ public class CifraHibridaGUI extends JFrame {
         painelEntrada.add(scrollTextoClaro, BorderLayout.CENTER);
         painelCifrar.add(painelEntrada, BorderLayout.NORTH);
 
-        // Botão de cifrar
         botaoCifrar = new JButton("Cifrar Texto");
         botaoCifrar.setBackground(new Color(66, 133, 244));
         botaoCifrar.setForeground(Color.WHITE);
@@ -80,12 +74,10 @@ public class CifraHibridaGUI extends JFrame {
         painelBotao.add(botaoCifrar);
         painelCifrar.add(painelBotao, BorderLayout.CENTER);
 
-        // Área de saída dos dados cifrados
         JPanel painelSaida = new JPanel(new GridLayout(3, 1, 5, 5));
         painelSaida.setBorder(BorderFactory.createTitledBorder("Dados Cifrados (Hexadecimal)"));
         painelSaida.setBackground(new Color(245, 245, 245));
 
-        // Chave de sessão cifrada
         JPanel painelChaveSessao = new JPanel(new BorderLayout());
         painelChaveSessao.setBackground(new Color(245, 245, 245));
         JLabel labelChaveSessao = new JLabel("Chave de Sessão Cifrada:");
@@ -94,7 +86,6 @@ public class CifraHibridaGUI extends JFrame {
         campoChaveSessaoCifrada.setEditable(false);
         painelChaveSessao.add(campoChaveSessaoCifrada, BorderLayout.CENTER);
 
-        // IV (Nonce)
         JPanel painelIV = new JPanel(new BorderLayout());
         painelIV.setBackground(new Color(245, 245, 245));
         JLabel labelIV = new JLabel("IV (Nonce):");
@@ -103,7 +94,6 @@ public class CifraHibridaGUI extends JFrame {
         campoIV.setEditable(false);
         painelIV.add(campoIV, BorderLayout.CENTER);
 
-        // Texto cifrado
         JPanel painelTextoCifrado = new JPanel(new BorderLayout());
         painelTextoCifrado.setBackground(new Color(245, 245, 245));
         JLabel labelTextoCifrado = new JLabel("Texto Cifrado:");
@@ -122,17 +112,14 @@ public class CifraHibridaGUI extends JFrame {
 
         abas.addTab("Cifrar", painelCifrar);
 
-        // ----- Aba "Decifrar" -----
         JPanel painelDecifrar = new JPanel(new BorderLayout());
         painelDecifrar.setBackground(new Color(245, 245, 245));
         painelDecifrar.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // Área de entrada dos dados cifrados
         JPanel painelEntradaDecifrar = new JPanel(new GridLayout(3, 1, 5, 5));
         painelEntradaDecifrar.setBorder(BorderFactory.createTitledBorder("Dados Cifrados (Hexadecimal)"));
         painelEntradaDecifrar.setBackground(new Color(245, 245, 245));
 
-        // Campo para chave de sessão cifrada
         JPanel painelChaveSessaoDecifrada = new JPanel(new BorderLayout());
         painelChaveSessaoDecifrada.setBackground(new Color(245, 245, 245));
         JLabel labelChaveSessaoDecifrada = new JLabel("Chave de Sessão Cifrada:");
@@ -143,7 +130,6 @@ public class CifraHibridaGUI extends JFrame {
         JScrollPane scrollChaveSessaoDecifrada = new JScrollPane(areaChaveSessaoCifrada);
         painelChaveSessaoDecifrada.add(scrollChaveSessaoDecifrada, BorderLayout.CENTER);
 
-        // Campo para IV
         JPanel painelIVDecifrar = new JPanel(new BorderLayout());
         painelIVDecifrar.setBackground(new Color(245, 245, 245));
         JLabel labelIVDecifrar = new JLabel("IV (Nonce):");
@@ -154,7 +140,6 @@ public class CifraHibridaGUI extends JFrame {
         JScrollPane scrollIVDecifrar = new JScrollPane(areaIV);
         painelIVDecifrar.add(scrollIVDecifrar, BorderLayout.CENTER);
 
-        // Campo para texto cifrado
         JPanel painelTextoCifradoDecifrar = new JPanel(new BorderLayout());
         painelTextoCifradoDecifrar.setBackground(new Color(245, 245, 245));
         JLabel labelTextoCifradoDecifrar = new JLabel("Texto Cifrado:");
@@ -170,7 +155,6 @@ public class CifraHibridaGUI extends JFrame {
         painelEntradaDecifrar.add(painelTextoCifradoDecifrar);
         painelDecifrar.add(painelEntradaDecifrar, BorderLayout.NORTH);
 
-        // Botão de decifrar
         botaoDecifrar = new JButton("Decifrar Texto");
         botaoDecifrar.setBackground(new Color(66, 133, 244));
         botaoDecifrar.setForeground(Color.WHITE);
@@ -180,7 +164,6 @@ public class CifraHibridaGUI extends JFrame {
         painelBotaoDecifrar.add(botaoDecifrar);
         painelDecifrar.add(painelBotaoDecifrar, BorderLayout.CENTER);
 
-        // Área de saída do texto decifrado
         JPanel painelSaidaDecifrar = new JPanel(new BorderLayout());
         painelSaidaDecifrar.setBorder(BorderFactory.createTitledBorder("Texto Decifrado"));
         painelSaidaDecifrar.setBackground(new Color(245, 245, 245));
@@ -196,7 +179,6 @@ public class CifraHibridaGUI extends JFrame {
 
         add(abas);
 
-        // Ações dos botões
         botaoCifrar.addActionListener(e -> acaoCifrar());
         botaoDecifrar.addActionListener(e -> acaoDecifrar());
 
